@@ -1,0 +1,52 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title:  Kirk Lund
+brief-intro: An Apache Geode Developer's Blog
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://kirklund.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+permalink: /:year/:month/:day/:title/
+
+# other links
+github_username: kirklund
+twitter_username: kirk_lund
+linkedIn_username: kirklund
+facebook_username: kirklund
+
+description_footer: An Apache Geode Developer's Blog.
+
+# comments
+disqus_shortname: kirklund-github-io
+
+# statistic analysis (google analysis tracking id)
+google_analytics_id:
+
+# Build settings
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# port
+# port: 1234
+
+# url
+category_dir: category/
+tag_dir: tag/
+
+# excerpt
+excerpt_separator: "\n\n\n\n"
+
+# paginate
+plugins: [jekyll-paginate]
+paginate: 6

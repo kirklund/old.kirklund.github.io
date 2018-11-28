@@ -1,0 +1,59 @@
+---
+layout: default
+title: Tags
+permalink: /tag/
+icon: tags
+type: page
+---
+
+{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+{% assign tag_words = site_tags | split: ',' | sort %}
+
+<div class="page clearfix">
+    <div class="left">
+        <h1>{{page.title}}</h1>
+        <hr>
+        {% for item in (0..site.tags.size) %}{% unless forloop.last %}
+            {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+            <!-- h2 id="{{ this_word | cgi_escape }}">{{ this_word }}</h2 -->
+            <h2 id="{{ this_word }}">{{ this_word }}</h2>
+            <ul class="posts">
+                {% for post in site.tags[this_word] %}{% if post.title != null %}
+                <li itemscope>
+                    <i class="fa fa-calendar"></i>{{ post.date | date:"%F" }}
+                    {% if post.category == "speaking" %}<i class="fa fa-microphone"></i> {% endif %}
+                    <a class="title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                    {% include category.html %}
+                    {% include tag.html %}
+                </li>
+                {% endif %}{% endfor %}
+            </ul>
+        {% endunless %}{% endfor %}
+    </div>
+
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+
+    <div class="right">
+        <div class="wrap">
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    {% for item in (0..site.tags.size) %}{% unless forloop.last %}{% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+                    {% for post in site.tags[this_word] %}{% if post.title != null %}
+                    <li>
+                        <a data-scroll href="#{{ this_word }}">
+                            {{ this_word }} ({{ site.tags[this_word].size }})
+                        </a>
+                    </li>
+                    {% endif %}{% endfor %}
+                    {% endunless %}{% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script>
